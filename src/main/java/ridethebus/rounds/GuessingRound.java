@@ -4,8 +4,8 @@ import ridethebus.characters.IPlayer;
 import ridethebus.scoring.IScoringStrategy;
 
 /**
- * Represents the first round of Ride the Bus.
- * Uses polymorphism through IScoringStrategy -- the same wrong guess
+Represents the first round of Ride the Bus.
+Uses polymorphism through IScoringStrategy 
  */
 public class GuessingRound implements IRound {
 

@@ -5,28 +5,128 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95779e9c-3a3d-407f-89f4-7c057a29d11b" name="Changes" comment="Created structure with starting interfaces.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/game/GameBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/game/HigherLowerGuess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/game/InsideOutsideGuess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/game/RedBlackGuess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/game/SuitGuess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/observers/EventBus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/observers/GameEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/rounds/BusRound.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/rounds/BusRoundState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/rounds/GuessingRoundState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/rounds/IGameState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ridethebus/GameTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ridethebus/game/GameBuilderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ridethebus/observers/EventBusTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ridethebus/rounds/BusRoundTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ridethebus/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/game/IGameState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/game/IGuess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ridethebus/game/IGuess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/observers/IGameObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ridethebus/observers/IGameObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/observers/IGameSubject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ridethebus/observers/IGameSubject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/rounds/GuessingRound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ridethebus/rounds/GuessingRound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ridethebus/rounds/GuessingRoundTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ridethebus/rounds/GuessingRoundTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_annotations_2_18_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_18_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_databind_2_18_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_18_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_18_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_module_jackson_module_parameter_names_2_18_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_micrometer_micrometer_commons_1_14_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_micrometer_micrometer_observation_1_14_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jakarta_annotation_jakarta_annotation_api_2_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_tomcat_embed_tomcat_embed_core_10_1_33.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_tomcat_embed_tomcat_embed_el_10_1_33.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_tomcat_embed_tomcat_embed_websocket_10_1_33.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_3_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_autoconfigure_3_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_3_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_json_3_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_tomcat_3_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_web_3_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_aop_6_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_beans_6_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_context_6_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_core_6_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_expression_6_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_jcl_6_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_web_6_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_webmvc_6_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_yaml_snakeyaml_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/RideTheBusApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/Strategy/BotStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/game/CreditGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ridethebus/ui/GameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/resources.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.2.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.2.1/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.2.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.2.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.2.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.2.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.2.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_5_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_5_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_5_11_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_5_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_api_5_11_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_api_5_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_engine_5_11_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_engine_5_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_params_5_11_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_params_5_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_commons_1_11_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_commons_1_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_engine_1_11_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_engine_1_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_launcher_1_11_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_launcher_1_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_suite_1_11_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_suite_1_10_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_suite_api_1_11_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_suite_api_1_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_suite_commons_1_11_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_suite_commons_1_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_suite_engine_1_11_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_suite_engine_1_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_win_21.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_mac_aarch64_21.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_win_21.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_mac_aarch64_21.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_fxml_win_21.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_fxml_mac_aarch64_21.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_win_21.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_mac_aarch64_21.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_api_2_0_17.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/Ride-The-Bus-Family-Edition.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Ride-The-Bus-Family-Edition.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/Ride-The-Bus-Family-Edition.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Ride-The-Bus-Family-Edition.test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ride-The-Bus-Family-Edition.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Ride-The-Bus-Family-Edition.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/cards/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/cards/Card.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/cards/Deck.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/cards/Deck.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/cards/DeckFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/cards/DeckFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/cards/ICard.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/cards/ICard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/cards/IDeck.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/cards/IDeck.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/characters/HumanPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/characters/HumanPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/characters/IPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/characters/IPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/game/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/game/GameBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/game/HigherLowerGuess.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/game/HigherLowerGuess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/game/IGame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/game/IGuess.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/game/IGuess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/game/InsideOutsideGuess.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/game/InsideOutsideGuess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/game/RedBlackGuess.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/game/RedBlackGuess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/game/SuitGuess.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/game/SuitGuess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/observers/EventBus.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/observers/EventBus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/observers/GameEvent$Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/observers/GameEvent$Type.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/observers/GameEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/observers/GameEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/observers/IGameObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/observers/IGameObserver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/observers/IGameSubject.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/observers/IGameSubject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/rounds/BusRound.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/rounds/BusRoundState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/rounds/GuessingRound.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/rounds/GuessingRoundState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/rounds/IGameState.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/rounds/IGameState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/rounds/IRound.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/rounds/IRound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/scoring/AdultScoringStrategy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/scoring/FamilyScoringStrategy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/scoring/IScoringStrategy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/ui/ICardDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/ui/ICardDisplay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ridethebus/ui/IScoreboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ridethebus/ui/IScoreboard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ridethebus/rounds/BusRoundTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/ridethebus/rounds/BusRoundTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ridethebus/rounds/BusRoundTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/ridethebus/rounds/BusRoundTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ridethebus/rounds/GuessingRoundTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/ridethebus/rounds/GuessingRoundTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ridethebus/rounds/GuessingRoundTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/ridethebus/rounds/GuessingRoundTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/Game.class.uniqueId4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/GuessingRound.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/IGameObserver.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/IGameState.class.uniqueId5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/IGameSubject.class.uniqueId3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/IGuess.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/game/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/game/GameBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/game/IGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/rounds/BusRound.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/rounds/BusRoundState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/rounds/GuessingRound.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/rounds/GuessingRoundState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/scoring/AdultScoringStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/scoring/FamilyScoringStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ridethebus/scoring/IScoringStrategy.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +181,10 @@
     &quot;accountId&quot;: &quot;150995c9-e9d5-4b7b-93c8-ce81c38f4c0b&quot;
   }
 }</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -97,17 +201,36 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Build Ride-The-Bus-Family-Edition.executor": "Run",
     "Gradle.Tests in 'Ride-The-Bus-Family-Edition.test'.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.RideTheBusApplication.executor": "Run",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/eddie/IdeaProjects/Ride-The-Bus-Family-Edition",
+    "last_opened_file_path": "/Users/jaredosterhaus/CU BOULDER/Ride-The-Bus-Family-Edition",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/jaredosterhaus/CU BOULDER/Ride-The-Bus-Family-Edition/src/main/resources/static/src/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -115,14 +238,14 @@
       <recent name="C:\Users\eddie\IdeaProjects\Ride-The-Bus-Family-Edition" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/static" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="C:\Users\eddie\IdeaProjects\Ride-The-Bus-Family-Edition\src\test\java\ridethebus\observers" />
       <recent name="C:\Users\eddie\IdeaProjects\Ride-The-Bus-Family-Edition\src\main\java\ridethebus" />
       <recent name="C:\Users\eddie\IdeaProjects\Ride-The-Bus-Family-Edition\src\main\java\observers" />
-      <recent name="C:\Users\eddie\IdeaProjects\Ride-The-Bus-Family-Edition\src\main\java" />
-      <recent name="C:\Users\eddie\IdeaProjects\Ride-The-Bus-Family-Edition" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.RideTheBusApplication">
     <configuration name="Tests in 'Ride-The-Bus-Family-Edition.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -147,6 +270,13 @@
       <GradleProfilingDisabled>false</GradleProfilingDisabled>
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
+    </configuration>
+    <configuration name="RideTheBusApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Ride-The-Bus-Family-Edition.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ridethebus.RideTheBusApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
       <option name="ENV_FILES" value="" />
@@ -178,6 +308,7 @@
     <attachedChunks>
       <set>
         <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.240" />
       </set>
     </attachedChunks>
   </component>
@@ -188,6 +319,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1774286006975</updated>
+      <workItem from="1777136013200" duration="3880000" />
+      <workItem from="1777144040303" duration="1446000" />
+      <workItem from="1777148389310" duration="2507000" />
     </task>
     <task id="LOCAL-00001" summary="Created structure with starting interfaces.">
       <option name="closed" value="true" />
@@ -200,9 +334,28 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created structure with starting interfaces." />
     <option name="LAST_COMMIT_MESSAGE" value="Created structure with starting interfaces." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/resources/src/Main.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/resources/static/src/Main.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Ride_The_Bus_Family_Edition$Tests_in__Ride_The_Bus_Family_Edition_test_.ic" NAME="Tests in 'Ride-The-Bus-Family-Edition.test' Coverage Results" MODIFIED="1774303922726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

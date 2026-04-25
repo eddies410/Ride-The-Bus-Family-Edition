@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: org.junit.platform:junit-platform-suite-api:1.11.3" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.junit.platform" artifactId="junit-platform-suite-api" version="1.11.3" baseVersion="1.11.3" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-suite-api/1.11.3/80ed7642b75da64ce06951a7b3863cf340e3c9ae/junit-platform-suite-api-1.11.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

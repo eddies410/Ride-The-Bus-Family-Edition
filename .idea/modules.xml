@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/Ride-The-Bus-Family-Edition.iml" filepath="$PROJECT_DIR$/Ride-The-Bus-Family-Edition.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Ride-The-Bus-Family-Edition.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Ride-The-Bus-Family-Edition.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Ride-The-Bus-Family-Edition.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Ride-The-Bus-Family-Edition.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/resources/resources.iml" filepath="$PROJECT_DIR$/src/main/resources/resources.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/resources/static/static.iml" filepath="$PROJECT_DIR$/src/main/resources/static/static.iml" />
     </modules>
   </component>
 </project>

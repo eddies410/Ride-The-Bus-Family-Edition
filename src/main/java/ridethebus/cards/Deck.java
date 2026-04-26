@@ -13,13 +13,23 @@ public class Deck implements IDeck {
     private final List<ICard> cards = new ArrayList<>();
 
     public Deck() {
-        buildDeck();
+        buildDeck(1);
         shuffle();
     }
 
-    private void buildDeck() {
+    // New constructor for short deck
+    public Deck(int minValue) {
+        buildDeck(minValue);
+        shuffle();
+    }
+
+    public void addCard(ICard card) {
+        cards.add(card);
+    }
+
+    private void buildDeck(int minValue) {
         for (String suit : SUITS) {
-            for (int value = 1; value <= 13; value++) {
+            for (int value = minValue; value <= 13; value++) {
                 cards.add(new Card(suit, value));
             }
         }

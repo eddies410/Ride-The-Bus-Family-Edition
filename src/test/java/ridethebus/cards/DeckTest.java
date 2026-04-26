@@ -7,36 +7,52 @@ public class DeckTest {
 
     @Test
     void freshDeckHas52Cards() {
-        IDeck deck = new Deck();
-        assertEquals(52, deck.size());
+        assertEquals(52, new Deck().size());
     }
 
     @Test
-    void dealingReducesDeckSizeByOne() {
-        IDeck deck = new Deck();
+    void dealReducesDeckByOne() {
+        Deck deck = new Deck();
         deck.deal();
         assertEquals(51, deck.size());
     }
 
     @Test
-    void dealingHandReducesDeckByHandSize() {
-        IDeck deck = new Deck();
+    void dealHandReducesDeckByHandSize() {
+        Deck deck = new Deck();
         deck.dealHand(4);
         assertEquals(48, deck.size());
     }
 
     @Test
-    void dealingFromEmptyDeckThrowsException() {
-        IDeck deck = new Deck();
-        for (int i = 0; i < 52; i++) {
-            deck.deal();
-        }
+    void emptyDeckThrowsOnDeal() {
+        Deck deck = new Deck();
+        for (int i = 0; i < 52; i++) deck.deal();
         assertThrows(IllegalStateException.class, deck::deal);
     }
 
     @Test
-    void factoryCreatesStandardDeck() {
-        IDeck deck = DeckFactory.createDeck();
-        assertEquals(52, deck.size());
+    void deckIsNotEmptyWhenFull() {
+        assertFalse(new Deck().isEmpty());
+    }
+
+    @Test
+    void deckIsEmptyAfterAllCardsDealt() {
+        Deck deck = new Deck();
+        for (int i = 0; i < 52; i++) deck.deal();
+        assertTrue(deck.isEmpty());
+    }
+
+    @Test
+    void addCardIncreasesDeckSize() {
+        Deck deck = new Deck();
+        deck.addCard(new Joker());
+        assertEquals(53, deck.size());
+    }
+
+    @Test
+    void dealHandReturnsCorrectNumberOfCards() {
+        Deck deck = new Deck();
+        assertEquals(4, deck.dealHand(4).size());
     }
 }

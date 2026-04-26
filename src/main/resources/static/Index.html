@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride the Bus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .p1-active { --player-color: #c0392b; }
+        .p2-active { --player-color: #2471a3; }
+
+        .player-card.active-player {
+            border-color: var(--player-color, var(--text));
+        }
+
+        .q-steps.p1 .q-step.active { color: #c0392b; border-color: #c0392b; }
+        .q-steps.p1 .q-step.done { color: #c0392b; border-color: #c0392b; opacity: 0.5; }
+        .q-steps.p2 .q-step.active { color: #2471a3; border-color: #2471a3; }
+        .q-steps.p2 .q-step.done { color: #2471a3; border-color: #2471a3; opacity: 0.5; }
+
+        .btn.p1 { border-color: #c0392b; color: #c0392b; }
+        .btn.p1.primary { background: #c0392b; color: #fff; border-color: #c0392b; }
+        .btn.p2 { border-color: #2471a3; color: #2471a3; }
+        .btn.p2.primary { background: #2471a3; color: #fff; border-color: #2471a3; }
+
+        :root {
+            --bg: #ffffff;
+            --surface: #f7f7f7;
+            --border: #e8e8e8;
+            --text: #111111;
+            --muted: #999999;
+            --green: #1a7a3c;
+            --red: #c0392b;
+            --gold: #b8860b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; min-height: 100vh; }
+        .screen { display: none; min-height: 100vh; }
+        .screen.active { display: flex; flex-direction: column; }
+
+        /* landing */
+        #screen-landing { align-items: center; justify-content: center; gap: 2.5rem; }
+        .card-stack { position: relative; width: 80px; height: 120px; }
+        .stacked-card { position: absolute; width: 80px; height: 120px; border-radius: 5px; background: var(--bg); border: 1px solid var(--border); }
+        .stacked-card:nth-child(1) { transform: rotate(-7deg) translate(-3px, 3px); }
+        .stacked-card:nth-child(2) { transform: rotate(-2deg) translate(-1px, 1px); }
+        .stacked-card:nth-child(3) { transform: rotate(4deg) translate(2px, -1px); }
+        .stacked-card.top { transform: none; }
+        .landing-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; letter-spacing: 0.04em; }
+
+        /* setup */
+        #screen-setup { align-items: center; justify-content: center; padding: 2rem; }
+        .setup-box { width: 100%; max-width: 380px; display: flex; flex-direction: column; gap: 1.25rem; }
+        .setup-title { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+        .field { display: flex; flex-direction: column; gap: 0.4rem; }
+        label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+        input[type="text"] { background: var(--bg); border: 1px solid var(--border); border-radius: 3px; color: var(--text); font-family: 'DM Mono', monospace; font-size: 0.85rem; padding: 0.6rem 0.75rem; outline: none; width: 100%; }
+        input[type="text"]:focus { border-color: var(--text); }
+        .mode-row { display: flex; gap: 0.5rem; }
+        .mode-btn { flex: 1; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.6rem; border: 1px solid var(--border); border-radius: 3px; background: var(--bg); color: var(--muted); cursor: pointer; }
+        .mode-btn.selected { border-color: var(--text); color: var(--text); background: var(--surface); }
+
+        /* game layout */
+        #screen-game { flex-direction: row; }
+        .sidebar { width: 220px; border-right: 1px solid var(--border); padding: 1.5rem 1.25rem; display: flex; flex-direction: column; gap: 1.5rem; flex-shrink: 0; }
+        .sidebar-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+        .round-indicator { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.04em; line-height: 1; }
+        .player-card { padding: 0.75rem; border: 1px solid var(--border); border-radius: 3px; display: flex; flex-direction: column; gap: 0.3rem; }
+        .player-card.active-player { border-color: var(--text); }
+        .player-card.bankrupt { opacity: 0.4; }
+        .player-name { font-size: 0.8rem; font-weight: 500; }
+        .player-credits { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.04em; line-height: 1; }
+        .player-wager { font-size: 0.65rem; color: var(--muted); }
+        .log-entries { font-size: 0.65rem; color: var(--muted); display: flex; flex-direction: column; gap: 0.3rem; max-height: 120px; overflow-y: auto; }
+        .log-entry.good { color: var(--green); }
+        .log-entry.bad  { color: var(--red); }
+        .log-entry.info { color: var(--gold); }
+
+        /* main */
+        .game-main { flex: 1; display: flex; flex-direction: column; padding: 2rem 2.5rem; gap: 2rem; max-width: 680px; }
+        .q-steps { display: flex; }
+        .q-step { flex: 1; padding: 0.5rem 0.25rem; font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--border); text-align: center; transition: all 0.2s; }
+        .q-step.active { color: var(--text); border-color: var(--text); }
+        .q-step.done { color: var(--green); border-color: var(--green); }
+        .multiplier-tag { font-size: 0.55rem; margin-top: 0.2rem; color: var(--muted); }
+        .q-step.active .multiplier-tag { color: var(--gold); }
+
+        .card-reveal-area { display: flex; align-items: center; gap: 2rem; min-height: 140px; }
+        .big-card { width: 90px; height: 126px; border-radius: 6px; background: var(--bg); border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; flex-shrink: 0; }
+        .big-card.facedown { background: repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 4px, #e8e8e8 4px, #e8e8e8 8px); }
+        .big-card .c-val { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1; }
+        .big-card .c-suit { font-size: 1.2rem; }
+        .big-card.red-card .c-val, .big-card.red-card .c-suit { color: var(--red); }
+        .result-badge { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.04em; opacity: 0; transform: translateY(6px); transition: all 0.25s; }
+        .result-badge.show { opacity: 1; transform: translateY(0); }
+        .result-badge.win { color: var(--green); }
+        .result-badge.lose { color: var(--red); }
+
+        .section-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+        .wager-row { display: flex; gap: 0.5rem; align-items: center; }
+        input[type="number"] { background: var(--bg); border: 1px solid var(--border); border-radius: 3px; color: var(--text); font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; padding: 0.4rem 0.75rem; width: 140px; outline: none; letter-spacing: 0.04em; }
+        input[type="number"]:focus { border-color: var(--text); }
+        .quick-wagers { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .quick-btn { font-family: 'DM Mono', monospace; font-size: 0.65rem; padding: 0.3rem 0.6rem; border: 1px solid var(--border); border-radius: 3px; background: var(--bg); color: var(--muted); cursor: pointer; }
+        .quick-btn:hover { border-color: var(--text); color: var(--text); }
+
+        .guess-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .btn { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border); border-radius: 3px; padding: 0.6rem 1.25rem; background: var(--bg); color: var(--text); cursor: pointer; transition: all 0.15s; }
+        .btn:hover { background: var(--surface); }
+        .btn:active { transform: scale(0.97); }
+        .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+        .btn.primary:hover { opacity: 0.85; }
+        .btn.danger { border-color: var(--red); color: var(--red); }
+        .btn.success { border-color: var(--green); color: var(--green); }
+
+        .cashout-bar { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 3px; background: var(--surface); }
+        .cashout-amount { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--green); letter-spacing: 0.04em; }
+
+        /* game over */
+        #screen-over { align-items: center; justify-content: center; gap: 2rem; padding: 2rem; }
+        .over-title { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 0.04em; }
+        .final-scores { display: flex; flex-direction: column; gap: 0.75rem; width: 100%; max-width: 320px; }
+        .final-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 3px; }
+        .final-row.winner { border-color: var(--text); }
+        .f-name { font-size: 0.85rem; }
+        .f-credits { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.04em; }
+        .winner-label { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-right: 0.5rem; }
+    </style>
+</head>
+<body>
+
+<!-- LANDING -->
+<div id="screen-landing" class="screen active">
+    <div style="font-size:5rem;">🃏</div>
+    <div class="landing-title">Ride the Bus</div>
+    <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%;max-width:260px;">
+        <button class="btn primary" onclick="goToSetup('vs-human')">Player vs Player</button>
+        <button class="btn" onclick="goToSetup('vs-bot')">Player vs AI</button>
+    </div>
+</div>
+<!-- SETUP -->
+<div id="screen-setup" class="screen">
+    <div class="setup-box">
+        <div class="setup-title">Game Setup</div>
+
+        <div class="field">
+            <label>Player 1 Name</label>
+            <input type="text" id="p1Name" value="Player 1" maxlength="16"/>
+        </div>
+
+        <div id="p2NameField" class="field" style="display:none;">
+            <label>Player 2 Name</label>
+            <input type="text" id="p2Name" value="Player 2" maxlength="16"/>
+        </div>
+
+        <div class="field">
+            <label>Deck Type</label>
+            <div class="mode-row">
+                <button class="mode-btn selected" onclick="selectDeck(this,'standard')">
+                    Standard<br><span style="font-size:0.6rem;color:var(--muted)">52 cards</span>
+                </button>
+                <button class="mode-btn" onclick="selectDeck(this,'short')">
+                    Short<br><span style="font-size:0.6rem;color:var(--muted)">36 cards</span>
+                </button>
+                <button class="mode-btn" onclick="selectDeck(this,'joker')">
+                    Joker<br><span style="font-size:0.6rem;color:var(--muted)">54 cards</span>
+                </button>
+                <button class="mode-btn" onclick="selectDeck(this,'double')">
+                    Double<br><span style="font-size:0.6rem;color:var(--muted)">104 cards</span>
+                </button>
+            </div>
+        </div>
+
+        <button class="btn primary" onclick="confirmSetup()">Start Game</button>
+        <button class="btn" onclick="showScreen('screen-landing')">← Back</button>
+    </div>
+</div>
+
+<!-- PASS SCREEN -->
+<div id="screen-pass" class="screen">
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:2rem;justify-content:center;min-height:100vh;">
+        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Next Up</div>
+        <div class="landing-title" id="passTitle">Player 2's Turn</div>
+        <button class="btn primary" id="passBtn" onclick="resumeTurn()">Ready</button>
+    </div>
+</div>
+
+<!-- GAME -->
+<div id="screen-game" class="screen">
+    <div class="sidebar">
+        <div>
+            <div class="sidebar-label">Round</div>
+            <div class="round-indicator" id="roundIndicator">1 / 5</div>
+        </div>
+        <div>
+            <div class="sidebar-label">Players</div>
+            <div id="playerCards" style="display:flex;flex-direction:column;gap:0.5rem;"></div>
+        </div>
+        <div style="border-top:1px solid var(--border);padding-top:1rem;margin-top:auto;">
+            <div class="sidebar-label">Log</div>
+            <div class="log-entries" id="logEntries"></div>
+        </div>
+    </div>
+
+    <div class="game-main">
+        <!-- Question tracker -->
+        <div class="q-steps">
+            <div class="q-step" id="qs0">Red / Black<div class="multiplier-tag">2×</div></div>
+            <div class="q-step" id="qs1">Higher / Lower<div class="multiplier-tag">4×</div></div>
+            <div class="q-step" id="qs2">In / Out<div class="multiplier-tag">8×</div></div>
+            <div class="q-step" id="qs3">Suit<div class="multiplier-tag">20×</div></div>
+        </div>
+
+        <!-- Card -->
+        <div class="card-reveal-area" id="cardRow" style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;min-height:140px;">
+        </div>
+        <div class="result-badge" id="resultBadge" style="margin-top:0.5rem;"></div>
+        <!-- Wager -->
+        <div id="wagerSection" style="display:flex;flex-direction:column;gap:0.75rem;">
+            <div class="section-label">Wager your credits</div>
+            <div class="wager-row">
+                <input type="number" id="wagerInput" min="1" value="50" />
+                <button class="btn primary" onclick="submitWager()">Wager</button>
+            </div>
+            <div class="quick-wagers">
+                <button class="quick-btn" onclick="setWager(25)">25</button>
+                <button class="quick-btn" onclick="setWager(50)">50</button>
+                <button class="quick-btn" onclick="setWager(100)">100</button>
+                <button class="quick-btn" onclick="setWagerAllIn()">All In</button>
+            </div>
+        </div>
+
+        <!-- Guess -->
+        <div id="guessSection" style="display:none;flex-direction:column;gap:0.75rem;">
+            <div class="section-label" id="guessPrompt">—</div>
+            <div class="guess-btns" id="guessBtns"></div>
+        </div>
+
+        <!-- Cash out -->
+        <div class="cashout-bar" id="cashoutBar" style="display:none;">
+            <div>
+                <div style="font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);">Cash out now for</div>
+                <div class="cashout-amount" id="cashoutAmount">—</div>
+            </div>
+            <div style="display:flex;gap:0.5rem;">
+                <button class="btn success" onclick="doCashOut()">Take it</button>
+                <button class="btn" onclick="keepGoing()">Keep going →</button>
+            </div>
+        </div>
+
+        <!-- Next round -->
+        <div id="nextRoundSection" style="display:none;">
+            <button class="btn primary" id="nextRoundBtn" onclick="doNextRound()">Next Round →</button>
+        </div>
+    </div>
+</div>
+
+<!-- GAME OVER -->
+<div id="screen-over" class="screen">
+    <div class="over-title" id="overTitle">Game Over</div>
+    <div class="final-scores" id="finalScores"></div>
+    <button class="btn primary" onclick="showScreen('screen-landing')">Play Again</button>
+</div>
+
+<script>
+    let currentTurnPlayer = 'Player 1';
+    const BASE = 'http://localhost:8080/api';
+    const SUIT_SYMBOLS = { Hearts:'♥', Diamonds:'♦', Clubs:'♣', Spades:'♠' };
+    const RED_SUITS = ['Hearts','Diamonds'];
+    const QUESTIONS = [
+        { prompt:'Red or Black?', options:['Red','Black'] },
+        { prompt:'Higher or Lower?', options:['Higher','Lower'] },
+        { prompt:'Inside or Outside?', options:['Inside','Outside'] },
+        { prompt:'Which Suit?', options:['Hearts','Diamonds','Clubs','Spades'] },
+    ];
+    const MULTIPLIERS = [2, 4, 8, 20];
+
+    let gameId = null;
+    let state = null;
+    let gameMode = 'vs-bot';
+    let humanPlayerName = null;
+    let selectedDeckType = 'standard';
+
+
+
+    function showScreen(id) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+
+    function goToSetup(mode) {
+        gameMode = mode;
+        document.getElementById('p2NameField').style.display =
+            mode === 'vs-human' ? 'block' : 'none';
+        showScreen('screen-setup');
+    }
+
+    function selectDeck(btn, type) {
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedDeckType = type;
+    }
+
+    function confirmSetup() {
+        const p1 = document.getElementById('p1Name').value.trim() || 'Player 1';
+        const p2 = document.getElementById('p2Name').value.trim() || 'Player 2';
+        startGame(gameMode, p1, p2);
+    }
+    async function submitWager() {
+        const wager = parseInt(document.getElementById('wagerInput').value);
+        if (!wager || wager < 1) return;
+        try {
+            const res = await fetch(`${BASE}/game/${gameId}/wager`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ playerName:humanPlayerName, wager }) });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
+            applyState(data);
+            log(`Wagered ${wager} credits`, 'info');
+            showGuessSection(data);
+        } catch(e) { log('Error: ' + e.message, 'bad'); }
+    }
+
+    function showPassScreen(nextPlayer) {
+        currentTurnPlayer = nextPlayer;
+        document.getElementById('passTitle').textContent = nextPlayer + "'s Turn";
+        const btn = document.getElementById('passBtn');
+        btn.className = 'btn primary ' + (nextPlayer === 'Player 1' ? 'p1' : 'p2');
+        showScreen('screen-pass');
+    }
+
+    function resumeTurn() {
+        showScreen('screen-game');
+        humanPlayerName = currentTurnPlayer;
+        resetRoundUI();
+        applyState(state);
+        updatePlayerColors();
+        // always start with wager screen for the incoming player
+        document.getElementById('wagerSection').style.display = 'flex';
+        document.getElementById('guessSection').style.display = 'none';
+    }
+    async function startGame(mode, p1Name = 'Player 1', p2Name = 'Player 2') {
+        gameMode = mode;
+        humanPlayerName = p1Name;
+        document.getElementById('wagerInput').value = 50;
+        try {
+            const body = {
+                player1: p1Name,
+                mode: gameMode,
+                player2: p2Name,
+                deckType: selectedDeckType
+            };
+            const res = await fetch(`${BASE}/game/create`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
+            gameId = data.gameId;
+            applyState(data);
+            resetRoundUI();
+            showScreen('screen-game');
+            updatePlayerColors();
+            log(`Game started — ${selectedDeckType} deck — Round 1 of 5`, 'info');
+        } catch(e) { console.error(e); }
+    }
+    function updatePlayerColors() {
+        // use index position instead of hardcoded name
+        const isP1 = state?.players?.[0]?.name === humanPlayerName;
+        document.getElementById('screen-game').className = 'screen active ' + (isP1 ? 'p1-active' : 'p2-active');
+        document.querySelector('.q-steps').className = 'q-steps ' + (isP1 ? 'p1' : 'p2');
+    }
+
+    async function submitGuess(guess) {
+        disableGuesses(true);
+        try {
+            const res = await fetch(`${BASE}/game/${gameId}/guess`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ playerName:humanPlayerName, guess }) });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
+            if (data.botEvent) log(data.botEvent, 'info');
+            handleGuessResult(data);
+        } catch(e) { log('Error: ' + e.message, 'bad'); disableGuesses(false); }
+    }
+
+    async function doCashOut() {
+        document.querySelector('#cashoutBar .btn:last-child').style.display = 'inline-block';
+        try {
+            const res = await fetch(`${BASE}/game/${gameId}/cashout`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ playerName:humanPlayerName }) });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
+            applyState(data);
+            log(`Cashed out! +${data.lastWinnings || '?'} credits`, 'good');
+            document.getElementById('cashoutBar').style.display = 'none';
+            showNextRoundBtn(data);
+        } catch(e) { log('Error: ' + e.message, 'bad'); }
+    }
+
+    async function doNextRound() {
+        try {
+            const res = await fetch(`${BASE}/game/${gameId}/next-round`, {
+                method:'POST',
+                headers:{'Content-Type':'application/json'}
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error);
+            applyState(data);
+            if (data.isOver) { showGameOver(data); return; }
+
+            if (gameMode === 'vs-human') {
+                // use actual player names from state instead of hardcoded strings
+                const p1Name = data.players[0].name;
+                humanPlayerName = p1Name;
+                updatePlayerColors();
+                showPassScreen(p1Name);
+            } else {
+                resetRoundUI();
+                log(`Round ${data.round} of ${data.totalRounds}`, 'info');
+            }
+        } catch(e) { log('Error: ' + e.message, 'bad'); }
+    }
+
+    function handleGuessResult(data) {
+        applyState(data);
+        const card = data.lastCard;
+        const correct = data.lastCorrect;
+        const ps = getHumanState(data);
+
+        if (card) showCard(card);
+
+        const badge = document.getElementById('resultBadge');
+        badge.textContent = correct ? 'Correct' : 'Wrong';
+        badge.className = 'result-badge show ' + (correct ? 'win' : 'lose');
+
+        if (correct) {
+            log(`${card.name} — correct!`, 'good');
+            if (ps && ps.currentQuestion >= 4) {
+                log('20× — round complete!', 'good');
+                const winnings = ps.wager * 20;
+                document.getElementById('cashoutAmount').textContent = winnings.toLocaleString() + ' credits';
+                document.getElementById('cashoutBar').style.display = 'flex';
+                // hide the "keep going" button
+                document.querySelector('#cashoutBar .btn:last-child').style.display = 'none';
+                document.getElementById('guessSection').style.display = 'none';
+                return;
+            }
+            const q = ps ? ps.currentQuestion : 1;
+            const wager = ps ? ps.wager : 0;
+            const cashoutVal = wager * MULTIPLIERS[Math.min(q - 1, 3)];
+            document.getElementById('cashoutAmount').textContent = cashoutVal.toLocaleString() + ' credits';
+            document.getElementById('cashoutBar').style.display = 'flex';
+            document.getElementById('guessSection').style.display = 'none';
+        } else {
+            log(`${card ? card.name : '?'} — wrong. Lost wager.`, 'bad');
+            document.getElementById('cashoutBar').style.display = 'none';
+            showNextRoundBtn(data);
+        }
+    }
+
+    function keepGoing() {
+        document.getElementById('cashoutBar').style.display = 'none';
+        showGuessSection(state);
+    }
+
+    function showGuessSection(data) {
+        const ps = getHumanState(data);
+        const q = ps ? ps.currentQuestion : 0;
+        const qData = QUESTIONS[Math.min(q, 3)];
+
+        document.getElementById('guessPrompt').textContent = `Q${q + 1}: ${qData.prompt}`;
+        const btns = document.getElementById('guessBtns');
+        btns.innerHTML = '';
+        for (const opt of qData.options) {
+            const btn = document.createElement('button');
+            btn.className = 'btn' + (['Red','Hearts','Diamonds'].includes(opt) ? ' danger' : '');
+            btn.textContent = opt;
+            btn.onclick = () => submitGuess(opt);
+            btns.appendChild(btn);
+        }
+
+        for (let i = 0; i < 4; i++) {
+            document.getElementById('qs' + i).className = 'q-step' + (i < q ? ' done' : i === q ? ' active' : '');
+        }
+
+        document.getElementById('wagerSection').style.display = 'none';
+        document.getElementById('guessSection').style.display = 'flex';
+        disableGuesses(false);
+    }
+
+    function showCard(card) {
+        const row = document.getElementById('cardRow');
+        const isRed = RED_SUITS.includes(card.suit);
+        const el = document.createElement('div');
+        el.className = 'big-card' + (isRed ? ' red-card' : '');
+        el.innerHTML = `<div class="c-val">${card.name.split(' ')[0]}</div><div class="c-suit">${SUIT_SYMBOLS[card.suit] || card.suit}</div>`;
+        row.appendChild(el);
+    }
+    function showNextRoundBtn(data) {
+        const sec = document.getElementById('nextRoundSection');
+        const btn = document.getElementById('nextRoundBtn');
+        sec.style.display = 'block';
+        document.getElementById('guessSection').style.display = 'none';
+
+        if (gameMode === 'vs-human') {
+            // get actual p2 name from state instead of hardcoding 'Player 2'
+            const p2 = data.players.find(p => p.name !== humanPlayerName);
+            if (p2 && !p2.roundDone) {
+                btn.textContent = `Pass to ${p2.name}`;
+                btn.className = 'btn primary p2';
+                btn.onclick = () => showPassScreen(p2.name);
+                return;
+            }
+        }
+
+        if (data.isOver || data.round >= data.totalRounds) {
+            btn.textContent = 'See Results';
+            btn.className = 'btn primary';
+            btn.onclick = () => showGameOver(data);
+        } else {
+            btn.textContent = 'Next Round';
+            btn.className = 'btn primary';
+            btn.onclick = doNextRound;
+        }
+    }
+
+    function applyState(data) {
+        state = data;
+        document.getElementById('roundIndicator').textContent = `${data.round} / ${data.totalRounds}`;
+        const container = document.getElementById('playerCards');
+        container.innerHTML = '';
+        for (const p of data.players) {
+            const div = document.createElement('div');
+            div.className = 'player-card' + (p.name === humanPlayerName ? ' active-player' : '') + (p.bankrupt ? ' bankrupt' : '');
+            const botTag = p.isBot ? ' <span style="font-size:0.55rem;color:var(--muted)">[bot]</span>' : '';
+            div.innerHTML = `<div class="player-name">${p.name}${botTag}</div><div class="player-credits">${p.credits.toLocaleString()}</div><div class="player-wager">${p.wager > 0 ? 'wagered ' + p.wager : 'no wager'}</div>`;
+            container.appendChild(div);
+        }
+    }
+
+    function showGameOver(data) {
+        showScreen('screen-over');
+        document.getElementById('overTitle').textContent = data.winner ? `${data.winner} Wins!` : 'Game Over';
+        const container = document.getElementById('finalScores');
+        container.innerHTML = '';
+        const sorted = [...data.players].sort((a, b) => b.credits - a.credits);
+        for (const p of sorted) {
+            const row = document.createElement('div');
+            row.className = 'final-row' + (p.name === data.winner ? ' winner' : '');
+            row.innerHTML = `<div class="f-name">${p.name === data.winner ? '<span class="winner-label">Winner</span>' : ''}${p.name}</div><div class="f-credits">${p.credits.toLocaleString()}</div>`;
+            container.appendChild(row);
+        }
+    }
+
+    function resetRoundUI() {
+        document.getElementById('cardRow').innerHTML = '';
+        document.getElementById('resultBadge').className = 'result-badge';
+        document.getElementById('wagerSection').style.display = 'flex';
+        document.getElementById('guessSection').style.display = 'none';
+        document.getElementById('cashoutBar').style.display = 'none';
+        document.getElementById('nextRoundSection').style.display = 'none';
+        for (let i = 0; i < 4; i++) document.getElementById('qs' + i).className = 'q-step';
+    }
+
+    function setWager(amt) { document.getElementById('wagerInput').value = amt; }
+    function setWagerAllIn() { const ps = getHumanState(state); if (ps) document.getElementById('wagerInput').value = ps.credits; }
+    function disableGuesses(d) { document.querySelectorAll('#guessBtns .btn').forEach(b => b.disabled = d); }
+    function getHumanState(data) { return data?.players?.find(p => p.name === humanPlayerName); }
+    function log(msg, cls='') {
+        const el = document.getElementById('logEntries');
+        const entry = document.createElement('div');
+        entry.className = 'log-entry ' + cls;
+        entry.textContent = msg;
+        el.prepend(entry);
+    }
+</script>
+</body>
+</html>
